@@ -16,6 +16,7 @@ function Board({roomId, isAdmin, userName, roomValidation}) {
   
   const [board,setBoard] = useState([0,1,2,3,5,8,13,20,'?'])
   const [allPlayers,setAllPlayers] = useState([])
+  const [tempPlayers,setTempPlayers] = useState([])
   const [isVoted, setIsVoted] = useState(false)
   const [finished,setFinished] = useState(false)
   const [mapperDict,setMapperDict] = useState({})
@@ -31,6 +32,7 @@ function Board({roomId, isAdmin, userName, roomValidation}) {
   function resetBoard() {
     setIsVoted(false)
     setFinished(false)
+    setToggle(true)
     socket.emit("reset",{ userName:userName,roomId:roomId, socketId:socket.id })
   }
 
@@ -56,6 +58,10 @@ function Board({roomId, isAdmin, userName, roomValidation}) {
     return count;
   }
 
+  function showVotes() {
+    socket.emit("show-votes",{ userName:userName,roomId:roomId, socketId:socket.id })
+  }
+
   useEffect(() => {
 
     socket.on("new-user",(data)=>{
@@ -75,6 +81,7 @@ function Board({roomId, isAdmin, userName, roomValidation}) {
     socket.on("reset",()=>{
       setIsVoted(false)
       setFinished(false)
+      setToggle(true)
       toast(`Board Cleared`,{
         position: toast.POSITION.TOP_CENTER
       });
@@ -83,6 +90,18 @@ function Board({roomId, isAdmin, userName, roomValidation}) {
     socket.on("all-data",(data)=>{
       // console.log(data.room)
       setAllPlayers([...data.room])
+      let newdata = data.room.map((i)=>{
+        return {
+          index: 8,
+          socketId: i.socketId,
+          userName : i.userName
+        }
+      })
+      setTempPlayers([...newdata])
+    })
+
+    socket.on("show-votes",(data)=>{
+      setTempPlayers([...data.room])
     })
 
   },[socket])
@@ -140,7 +159,11 @@ function Board({roomId, isAdmin, userName, roomValidation}) {
             ))}
                 
             </div>
-            {isAdmin && <button onClick={resetBoard} className='btn btn-primary reset-btn'>Reset Board</button>}
+            {isAdmin && <div className='admin-btns'>
+              <button onClick={resetBoard} className='btn btn-danger reset-btn'>Reset Board</button>
+              <button onClick={showVotes} className='btn btn-primary vote-btn'>Show Votes</button>
+            </div>
+            }
         </div>
             
         <div className='right-pane'>
@@ -153,7 +176,7 @@ function Board({roomId, isAdmin, userName, roomValidation}) {
             </div>
             <hr />
 
-            {toggle ? (allPlayers.length !== 0 ? <Players allPlayers={allPlayers} board={board} /> : "...")
+            {toggle ? (tempPlayers.length !== 0 ? <Players tempPlayers={tempPlayers} board={board} /> : "...")
             :
             <Result mapperDict={mapperDict} />
             }

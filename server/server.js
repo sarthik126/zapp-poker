@@ -63,6 +63,10 @@ io.on("connection", (socket) => {
     console.log("RESET")
   });
 
+  socket.on("show-votes", (data) => {
+    io.to(data.roomId).emit("show-votes",{room:rooms[roomId]})
+  });
+
 });
 
 app.get("/rooms", (req, res) => {

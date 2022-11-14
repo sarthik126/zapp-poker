@@ -6,6 +6,7 @@
 }
 body {
   /* overflow-x: hidden; */
+  background: black;
 }
 .header {
   max-width: 100vw;
@@ -15,6 +16,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 200px;
+  background-color: white;
 }
 .logo {
     font-size: 30px;
@@ -52,7 +54,7 @@ body {
   height: auto;
   display: grid;
   grid-template-columns: 60% 40%;
-  background-color: black;
+  /* background-color: black; */
   color: white;
   user-select: none;
   padding-top: 60px;
@@ -95,24 +97,26 @@ body {
 .board {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 5px;
+  gap: 20px;
   justify-content: center;
   margin: 20px 0px;
 }
 .box {
   cursor: pointer;
   /* padding: 20px 30px; */
-  height: 100px;
+  height: 120px;
   width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 50px;
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 5px;
   background: none;
   color: white;
   transition: scale 1s ease-in-out;
+  outline: 1px solid white;
+  outline-offset: 5px;
 }
 .box:hover {
   background: radial-gradient(
@@ -123,17 +127,21 @@ body {
   color: black;
   scale: 1.1;
 }
-.reset-btn {
-    font-size: 25px;
+.admin-btns {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 60px;
+  margin-top: 20px;
+}
+.vote-btn, .reset-btn {
+    font-size: 24px;
     /* padding-top: 0px;
     padding-bottom: 0px; */
     padding: 0px 15px;
     transition: scale ease-in-out;
     /* margin-left: 100px; */
-    margin-bottom: 60px;
-    margin-top: 10px;
 }
-.reset-btn:hover {
+.vote-btn:hover {
     background: linear-gradient(
         90deg,
         rgba(67, 202, 224, 1) 0%,
@@ -162,6 +170,16 @@ body {
     max-height: 400px;
     width: 400px;
     overflow-y: scroll;
+}
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-height: 400px;
+  width: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 hr {
     width: 400px;
@@ -235,16 +253,16 @@ form {
     margin-left: 5px;
 }
 
-.chat::-webkit-scrollbar, .history::-webkit-scrollbar {
+.chat::-webkit-scrollbar, .history::-webkit-scrollbar, .result::-webkit-scrollbar {
     width: 8px;
 }
 
-.chat::-webkit-scrollbar-track, .history::-webkit-scrollbar-track {
+.chat::-webkit-scrollbar-track, .history::-webkit-scrollbar-track, .result::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(67, 202, 224, 1); 
     border-radius: 10px;
 }
 
-.chat::-webkit-scrollbar-thumb,.history::-webkit-scrollbar-thumb {
+.chat::-webkit-scrollbar-thumb,.history::-webkit-scrollbar-thumb, .result::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(67, 202, 224, 1); 
 }

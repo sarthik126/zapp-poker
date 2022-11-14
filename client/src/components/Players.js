@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Players({ allPlayers, board }) {
+export default function Players({ tempPlayers, board }) {
   // console.log(board)
   return (
     <div className="history">
-      {allPlayers.map((val, index) => (
+      {tempPlayers.map((val, index) => (
         <button className="win-btn" key={index}>
           <span>{val.userName}</span> - <span>{board[val.index]}</span>
         </button>

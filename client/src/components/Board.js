@@ -8,7 +8,7 @@ import Result from './Result';
 import {useNavigate} from 'react-router-dom'
 
 const serverURL = "https://zapp-poker-server.up.railway.app";
-const baseURL = "https://zapp-poker.up.railway.app"
+const baseURL = "https://zapp-poker.web.app"
 
 function Board({roomId, isAdmin, userName, roomValidation}) {
 

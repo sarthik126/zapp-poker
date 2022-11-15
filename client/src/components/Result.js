@@ -44,7 +44,7 @@ export default function Result({mapperDict}) {
       <hr />
       {Object.keys(mapperDict).map((val) => (
         <button className="win-btn" key={val}>
-          <span>Point {val}</span> -> <span>{mapperDict[val]}</span>
+          <span>Point {val}</span> {"->"} <span>{mapperDict[val]}</span>
         </button>
       ))}
     </div>

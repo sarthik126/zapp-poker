@@ -22,9 +22,9 @@ export default function Result({mapperDict}) {
         label: '%',
         data: data,
         backgroundColor: [
-            'rgba(75, 192, 192, 0.2)',
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
+            'rgba(75, 192, 192, 0.5)',
+          'rgba(255, 99, 132, 0.5)',
+          'rgba(153, 102, 255, 0.5)',
         ],
         borderColor: [
             'rgba(75, 192, 192, 1)',

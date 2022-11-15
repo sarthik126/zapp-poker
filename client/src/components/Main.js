@@ -3,7 +3,7 @@ import axios from "axios";
 import "../css/Main.css";
 import { useParams, useNavigate } from "react-router-dom";
 
-const serverURL = "http://localhost:5500";
+const serverURL = "https://zapp-poker-server.up.railway.app";
 
 const api = axios.create({
   baseURL: serverURL,

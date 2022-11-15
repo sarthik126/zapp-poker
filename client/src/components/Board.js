@@ -7,8 +7,8 @@ import Players from './Players';
 import Result from './Result';
 import {useNavigate} from 'react-router-dom'
 
-const serverURL = "http://localhost:5500";
-const baseURL = "http://localhost:3000"
+const serverURL = "https://zapp-poker-server.up.railway.app";
+const baseURL = "https://zapp-poker.up.railway.app"
 
 function Board({roomId, isAdmin, userName, roomValidation}) {
 
